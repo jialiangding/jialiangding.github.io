@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="一、虚拟化和容器技术 虚拟化技术 Type1: 不安装宿主机操作系统，而直接在硬件基础上安装虚拟化管理软件 Type2: 安装宿主机操作系统，在宿主机操作系统之上安装虚拟化管理软件   容器技术 Container 是在宿主机操作系统上使用Cgroups,Namespaceses技术创建出来具有边界的特殊进程。     他们之间的区别 虚拟化技术会虚拟出多个内核，每个虚拟机拥有一个自己的内核，彼此">
+<meta name="description" content="一、虚拟化和容器技术 虚拟化技术 Type1: 不安装宿主机操作系统，而直接在硬件基础上安装虚拟化管理软件 Type2: 安装宿主机操作系统，在宿主机操作系统之上安装虚拟化管理软件   容器技术 Container 是在宿主机操作系统上使用Cgroups,Namespaceses技术创建出来具有边界的特殊进程。     他们之间的区别  虚拟化技术会虚拟出多个内核，每个虚拟机拥有一个自己的内核，彼">
 <meta property="og:type" content="article">
 <meta property="og:title" content="容器介绍">
 <meta property="og:url" content="https://jialiangding.github.io/2020/12/18/docker/%E5%AE%B9%E5%99%A8%E4%BB%8B%E7%BB%8D/index.html">
 <meta property="og:site_name" content="jialiang_ding的博客">
-<meta property="og:description" content="一、虚拟化和容器技术 虚拟化技术 Type1: 不安装宿主机操作系统，而直接在硬件基础上安装虚拟化管理软件 Type2: 安装宿主机操作系统，在宿主机操作系统之上安装虚拟化管理软件   容器技术 Container 是在宿主机操作系统上使用Cgroups,Namespaceses技术创建出来具有边界的特殊进程。     他们之间的区别 虚拟化技术会虚拟出多个内核，每个虚拟机拥有一个自己的内核，彼此">
+<meta property="og:description" content="一、虚拟化和容器技术 虚拟化技术 Type1: 不安装宿主机操作系统，而直接在硬件基础上安装虚拟化管理软件 Type2: 安装宿主机操作系统，在宿主机操作系统之上安装虚拟化管理软件   容器技术 Container 是在宿主机操作系统上使用Cgroups,Namespaceses技术创建出来具有边界的特殊进程。     他们之间的区别  虚拟化技术会虚拟出多个内核，每个虚拟机拥有一个自己的内核，彼">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://jialiangding.github.io/2020/12/18/docker/%E5%AE%B9%E5%99%A8%E4%BB%8B%E7%BB%8D/media/15948678331781/jmeter-numcount.png">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB736f3fc4430f96e9be7840b85bb04201?method=download&shareKey=4bdb96602e0f0ad5f6d2b0e7585a64f6">
 <meta property="article:published_time" content="2020-12-18T09:17:45.000Z">
-<meta property="article:modified_time" content="2021-07-23T03:07:55.479Z">
+<meta property="article:modified_time" content="2021-07-23T03:43:15.330Z">
 <meta property="article:author" content="jialiang_ding">
 <meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://jialiangding.github.io/2020/12/18/docker/%E5%AE%B9%E5%99%A8%E4%BB%8B%E7%BB%8D/media/15948678331781/jmeter-numcount.png">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/WEB736f3fc4430f96e9be7840b85bb04201?method=download&shareKey=4bdb96602e0f0ad5f6d2b0e7585a64f6">
 
 
 
@@ -356,12 +356,72 @@
 </li>
 </ul>
 <ul>
-<li>他们之间的区别<ul>
+<li><p>他们之间的区别</p>
+<ul>
 <li>虚拟化技术会虚拟出多个内核，每个虚拟机拥有一个自己的内核，彼此之间隔离性非常好。并且在创建虚拟机之初就定义好了虚拟机的资源限制，如CPU核心数，内存大小，磁盘大小等。</li>
-<li>容器技术是直接运行在宿主机之上的，多个容器共用一个内核，因此隔离效果比较差，但是性能更好。<br><img src="media/15948678331781/jmeter-numcount.png" alt="sdsd"></li>
+<li>容器技术是直接运行在宿主机之上的，多个容器共用一个内核，因此隔离效果比较差，但是性能更好。<br><img src="https://note.youdao.com/yws/api/personal/file/WEB736f3fc4430f96e9be7840b85bb04201?method=download&shareKey=4bdb96602e0f0ad5f6d2b0e7585a64f6" alt="avatar"></li>
+</ul>
+<h3 id="二、容器化的基础"><a href="#二、容器化的基础" class="headerlink" title="二、容器化的基础"></a>二、容器化的基础</h3></li>
+</ul>
+<ul>
+<li>Chroot<ul>
+<li>如果需要在一个宿主机上运行多个容器，且容器之间相互个离，那么第一个就需要系统库文件的依赖，对于一     个容器而言，需要将其需要的系统文件单独复制出来一份，放到指定目录，并且需要让进程认为这就是根目录，而不是去调用宿主机系统上的库文件。Chroot就是一个切换根目录的方式。</li>
+</ul>
+</li>
+<li>NameSpace<ul>
+<li>为了让多个容器以沙盒的方式在宿主机上运行，就需要提前定义好各个容器能看到的边界。由于各个容器都是直接运行在宿主机系统上，因此需要内核对各个容器的上下文进行修改，让他们看上去是一个独立的操作系统。比如，指定PID为1的进程，指定网卡设备，指定文件系统挂载，指定用户等等。</li>
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>Linux操作系统内核从底层实现了为各个进程创建独立用户空间的功能，不同用户空间似于一个个独立的虚拟机系统，用户空间内部进程不能感知到其它用户空间中的进程状态。内核提供了六种Namespaces:</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>UTS</th>
+<th>hostname and domainname</th>
+<th>主机名和域名隔离</th>
+<th>内核版本：2.6.19</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>User</td>
+<td></td>
+<td>用户隔离。运行进程的用户和组</td>
+<td>内核版本：3.8.x</td>
+</tr>
+<tr>
+<td>Mount</td>
+<td></td>
+<td>挂载点隔离。即挂载点隔离，主要指根目录</td>
+<td>内核版本：2.4.19</td>
+</tr>
+<tr>
+<td>IPC</td>
+<td>Inter-process-connection</td>
+<td>进程间通信隔离。消息队列、共享内容、信号量</td>
+<td>内核版本：2.6.19</td>
+</tr>
+<tr>
+<td>Pid</td>
+<td>Process</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ID</td>
+<td>PID隔离</td>
+<td>内核版本：2.6.24</td>
+<td></td>
+</tr>
+<tr>
+<td>Net</td>
+<td>Network</td>
+<td>网络隔离。网络设备、协议栈、端口</td>
+<td>内核版本：2.6.29</td>
+</tr>
+</tbody></table>
 
       
     </div>
@@ -532,7 +592,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%99%9A%E6%8B%9F%E5%8C%96%E5%92%8C%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF"><span class="nav-number">1.</span> <span class="nav-text">一、虚拟化和容器技术</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%99%9A%E6%8B%9F%E5%8C%96%E5%92%8C%E5%AE%B9%E5%99%A8%E6%8A%80%E6%9C%AF"><span class="nav-number">1.</span> <span class="nav-text">一、虚拟化和容器技术</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%AE%B9%E5%99%A8%E5%8C%96%E7%9A%84%E5%9F%BA%E7%A1%80"><span class="nav-number">2.</span> <span class="nav-text">二、容器化的基础</span></a></li></ol></div>
             
 
           </div>
