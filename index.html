@@ -79,10 +79,12 @@
 
 
 
+<meta name="description" content="直到这一刻微笑着说话为止，我至少留下了一公升眼泪">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="jialiang_ding的博客">
 <meta property="og:url" content="https://jialiangding.github.io/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="jialiang_ding的博客">
+<meta property="og:description" content="直到这一刻微笑着说话为止，我至少留下了一公升眼泪">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="jialiang_ding">
 <meta name="twitter:card" content="summary">
@@ -121,7 +123,7 @@
 
 
 
-  <title>Hexo</title>
+  <title>jialiang_ding的博客</title>
   
 
 
@@ -152,12 +154,12 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">jialiang_ding的博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
       
-        <p class="site-subtitle"></p>
+        <p class="site-subtitle">记录生活中的点点滴滴</p>
       
   </div>
 
@@ -178,7 +180,7 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/%20" rel="section">
+          <a href="/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
@@ -188,7 +190,7 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/%20" rel="section">
+          <a href="/tags/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
@@ -198,7 +200,7 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/%20" rel="section">
+          <a href="/categories" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
@@ -208,7 +210,7 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/%20" rel="section">
+          <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
@@ -258,7 +260,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="jialiang_ding的博客">
     </span>
 
     
@@ -368,6 +370,165 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jialiangding.github.io/2020/12/18/docker/%E5%AE%B9%E5%99%A8%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jialiang_ding的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/12/18/docker/%E5%AE%B9%E5%99%A8%E4%BB%8B%E7%BB%8D/" itemprop="url">容器介绍</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-18T17:17:45+08:00">
+                2020-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index">
+                    <span itemprop="name">Docker</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="一、虚拟化和容器技术"><a href="#一、虚拟化和容器技术" class="headerlink" title="一、虚拟化和容器技术"></a>一、虚拟化和容器技术</h3><ul>
+<li>虚拟化技术<ul>
+<li>Type1: 不安装宿主机操作系统，而直接在硬件基础上安装虚拟化管理软件</li>
+<li>Type2: 安装宿主机操作系统，在宿主机操作系统之上安装虚拟化管理软件</li>
+</ul>
+</li>
+<li>容器技术<ul>
+<li>Container 是在宿主机操作系统上使用Cgroups,Namespaceses技术创建出来具有边界的特殊进程。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>他们之间的区别<ul>
+<li>虚拟化技术会虚拟出多个内核，每个虚拟机拥有一个自己的内核，彼此之间隔离性非常好。并且在创建虚拟机之初就定义好了虚拟机的资源限制，如CPU核心数，内存大小，磁盘大小等。</li>
+<li>容器技术是直接运行在宿主机之上的，多个容器共用一个内核，因此隔离效果比较差，但是性能更好。<br><img src="media/15948678331781/jmeter-numcount.png" alt="sdsd"></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -412,16 +573,34 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/%20%7C%7C%20archive">
+                <a href="/archives/%7C%7Carchive">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
             
 
           </nav>
