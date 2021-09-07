@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="接口异常测试123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172异常测试的步骤 需求分析需要分析有哪些可用性需求。一般情况下，考虑出现异常时对自身业务有什么样的影响，需要遵从基本的原">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jialiang_ding的博客">
+<meta property="og:url" content="https://jialiangding.github.io/2021/07/30/%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/%E6%8E%A5%E5%8F%A3%E5%BC%82%E5%B8%B8%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="jialiang_ding的博客">
+<meta property="og:description" content="接口异常测试123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172异常测试的步骤 需求分析需要分析有哪些可用性需求。一般情况下，考虑出现异常时对自身业务有什么样的影响，需要遵从基本的原">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/07/G2PMG9.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/07/G2W311.png">
+<meta property="og:image" content="https://s1.ax1x.com/2020/04/07/G2WcB8.png">
+<meta property="article:published_time" content="2021-07-30T09:44:47.905Z">
+<meta property="article:modified_time" content="2021-07-30T09:45:36.692Z">
+<meta property="article:author" content="jialiang_ding">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s1.ax1x.com/2020/04/07/G2PMG9.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jialiangding.github.io/2021/07/30/测试/测试基础/接口异常测试/"/>
+
+
+
+
+
+  <title> | jialiang_ding的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jialiang_ding的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">记录生活中的点点滴滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jialiangding.github.io/2021/07/30/%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/%E6%8E%A5%E5%8F%A3%E5%BC%82%E5%B8%B8%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jialiang_ding的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-07-30T17:44:47+08:00">
+                2021-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="接口异常测试"><a href="#接口异常测试" class="headerlink" title="接口异常测试"></a>接口异常测试</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">异常测试的步骤 </span><br><span class="line"></span><br><span class="line">需求分析</span><br><span class="line"></span><br><span class="line">需要分析有哪些可用性需求。</span><br><span class="line"></span><br><span class="line">一般情况下，考虑出现异常时对自身业务有什么样的影响，需要遵从基本的原则 </span><br><span class="line">1. 损害有限：异常造成的错误不应超过限度。</span><br><span class="line"></span><br><span class="line">2. 能够恢复：异常解除时应当能够恢复，造成的错误数据能够被修复。</span><br><span class="line"></span><br><span class="line">3. 报错明确：出现异常需要能够被发现，报错格式符合规格，关键错误需要有日志和告警，信息准确。</span><br><span class="line"></span><br><span class="line">一些具体的需求需要通过业务特性挖掘</span><br><span class="line"></span><br><span class="line">1. 如果是秒杀这样的高并发业务场景，那么需要考虑降级、并发。2. 依赖消息通知的业务，需要关注 NSQ 推送和消费相关的异常。</span><br><span class="line"></span><br><span class="line">3. 使用缓存的业务，需要关注缓存访问失败的情况，以及异常情况下数据一致性。</span><br><span class="line"></span><br><span class="line">4. 如果业务流程很重要必须要保证成功，那么需要关注是否有降级、容错、重试的需求，然后在异常中验证。5. 异步流程需要关注时序的问题。</span><br><span class="line"></span><br><span class="line">确定场景</span><br><span class="line"></span><br><span class="line">不同类型异常测试选择在不同的阶段做：</span><br><span class="line"></span><br><span class="line">1. 接口参数检查的异常一般在接口测试时完成</span><br><span class="line">2. 功能异常在日常项目中进行测试，或者专项排查验证一次。</span><br><span class="line">3. 系统级别的异常需要进行专门的演练。</span><br><span class="line"></span><br><span class="line">因为每个功能以及接口或多或少都能做一些异常測试，然而投入精力以及产生的回报往往不同。如果每个功能场景在项目测试的时候都能考虑异常，然后自下而上，从局部到整体去集成，那么系统的可靠性自然容易把</span><br><span class="line">控。</span><br><span class="line"></span><br><span class="line">如果对于功能中的异常场景并未持续的进行设计和验证，所以想要一下子把握和判斷系统的可靠性风险是很困难的</span><br><span class="line"></span><br><span class="line">如果业务线之前并未开展异常测试，那么考虑先对一些典型场景和重要的场景优先做一些异常，后续再将异常测试的思路和方法运用到项目测试中去。确定需要做哪些异常的场景的判断依据有</span><br><span class="line">1. 根据核心链路，对重要的流程优先进行异常测试。</span><br><span class="line"></span><br><span class="line">2. 根据业务特性，对于大流量、高并发、资金相关的功能优先进行异常测试。</span><br><span class="line"></span><br><span class="line">3. 根据开发反馈线上业务的稳定情况、调用异常的情況，确认相关功能是否需要关注异常 4. 根据线上的错误统计和反馈的线上问题，确认是否有可以挖掘的异常场景。</span><br><span class="line"></span><br><span class="line">依赖分析</span><br><span class="line"></span><br><span class="line">如果异常场景中需要考虑被调用服务的异常，那么需要对于该功能依赖的服务和特性进行分析并进行梳理常用的手段</span><br><span class="line"></span><br><span class="line">1. 根据系统时序图或者代码 review 梳理出功能相关的依赖。</span><br><span class="line">2. 可以查看调用链数据作为分析参考。</span><br><span class="line"></span><br><span class="line">用例编写</span><br><span class="line"></span><br><span class="line">根据分析的结果，梳理出依赖和场景，编写相应的用例，需要包含异常场景的构造、如何触发、期望的结果，可以放到用例平台上进行管理和跟踪。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">用例执行</span><br><span class="line"></span><br><span class="line">一般采用业务运行-&gt;异常构造-&gt;观察结果的方式进行。</span><br><span class="line"></span><br><span class="line">首先需要有正常请求的访问，这样可以在注入异常时观察系统的反应。然后是构造异常，异常构造的方式多种多样，可以通过构造异常的数据或者使用工具去触发所需的异常。运行时需要关注</span><br><span class="line"></span><br><span class="line">1. 发生异常时系统的表现，如业务运行结果、应用运行状态、错误信息等。2. 异常解除后，错误是否恢复、所花费的时间等。</span><br><span class="line"></span><br><span class="line">结果反愦</span><br><span class="line"></span><br><span class="line">执行完用例后，整理测试情况，输出测试结果，评估出当前场景下的系统可靠性。</span><br><span class="line"></span><br><span class="line">测试报告中一般包含以下内容 1. 覆盖的场景</span><br><span class="line"></span><br><span class="line">2. 发现的问题和严重级别。</span><br><span class="line"></span><br><span class="line">3. 可靠性评估、风险点以及改进建议。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>异常用例的设计</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在异常测试的基本步骤中，根据场景来设计异常用例是十分重要的一步。但是和正常用例相比，异常測试的用例设计过程是没有很明确的产品 PRD 来指导编写这样的用例，</span><br><span class="line">那么如何设计异常用例呢这里针对下单时点击支付这一个场景来进行分析。</span><br></pre></td></tr></table></figure>
+<p><img src="https://s1.ax1x.com/2020/04/07/G2PMG9.png" alt="avatar"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">功能层面</span><br><span class="line"></span><br><span class="line">首先，自然而然的先从用户以及使用场景出发，思考可能出现异常的场景 </span><br><span class="line">1. 密码错误。</span><br><span class="line">2. 余额不足。</span><br><span class="line">3. 交易限额。</span><br><span class="line">4. 重复支付。</span><br><span class="line"></span><br><span class="line">接口层面</span><br><span class="line"></span><br><span class="line">其次，从代码层面去分析接口参数和逻辑，</span><br><span class="line">1. 参数检验：如信息不存在、参数缺失等。</span><br><span class="line"></span><br><span class="line">2. 幂等性：如消息重复通知、同一个订单重复支付等 </span><br><span class="line">3. 并发访问，如：秒杀。</span><br><span class="line"></span><br><span class="line">4. 事务性：如支付不成功的情况不扣款也不打款也不扣减库存，可以重新支付。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>应用层面<br><img src="https://s1.ax1x.com/2020/04/07/G2W311.png" alt="avatar"></p>
+<p>通过分析应用调用关系，然后考虑可能出现的依赖服务的异常 </p>
+<ol>
+<li>MQ:消息乱序、重复。</li>
+<li>银行：调用银行扣款失败。 </li>
+<li>KV：读写 KV 失败。 </li>
+<li>DB：访问 DB 失败。</li>
+<li>其他应用：</li>
+</ol>
+<p>系统层面<br>最后从整体系統考的部署、拓扑、分布式进行分析</p>
+<p><img src="https://s1.ax1x.com/2020/04/07/G2WcB8.png" alt="avatar"><br>需要考虑的场景有：1. 网络故障。2. 机房宕机</p>
+<p>异常测试的分类实施</p>
+<p>根据上面的例子，可以基本了解到异常测试如何设计。在本节对于每种异常进行详细解释以及给出需要关注的点。</p>
+<p>功能异常</p>
+<p>功能测试是基于用户使用场景进行设计的异常，是功能测试重要的补充部分，一般建议在功能测试阶段中就进行考虑和执行，一般采用手动的方式执行其中操作异常属于比较典型的功能异常，需要根据对业务的了解设计场景，<br>拿退款的场景来说，有 1. 重复操作：如一笔订单退款完再退款。2. 乱序操作：如还未支付成功就进行退款。3. 违规操作：如退别人的款、退款超过支付金额限制。4. 操作中断：如未提交刷新/回退页面。</p>
+<p>执行过程中需要关注</p>
+<ol>
+<li>报错信息是否恰当、准确。2. 错误操作后功能是否可用。</li>
+</ol>
+<p>接口异常</p>
+<p>接口异常需要关注接口逻辑的正确性</p>
+<p>代码内部逻辑处理是否正常接口对外表现是否符合预期 3. 异常信息返回是否符合要求。</p>
+<p>最常见的接口异常的用例就是接口参数检查的用例了。</p>
+<p>一般接口参数需要对非法的参数进行检查，同时对于参数的类型和长度也需要做一定限制。非法的参数处理不当容易造成脏数据的问题，导致后续业务处理异常，严重的情况如 SQL 注入还会导致安全方面的问题，需要引起重视。<br>常见的处理方式有：特殊字符的转义或是报错拦截等。</p>
+<p>除了非法参数，调用接口时的常见异常情况还有重复访问、并发访问等，这往往要求接口逻辑里采用事务机制、幂等性、锁等方式进行处理，这些都可以作为验证的点。</p>
+<ol>
+<li><p>触发某一步骤失败，失败后回滚，无数据残留</p>
+</li>
+<li><p>失败后，请求重入能够成功</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>检查项</th>
+<th>检查点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>幂等</td>
+<td>重复收到请求，业务需要确保操作唯一性</td>
+<td>多次操作的结果是一致的，比如脚本重复执行后结果一致</td>
+</tr>
+<tr>
+<td>事务</td>
+<td>业务要求事务性，在执行过程中需要保证所有步骤都成功才最终成功</td>
+<td>1. 触发某一步骤失败，失败后回滚，无数据残留,<br> 2. 失败后，请求重入能够成功</td>
+</tr>
+<tr>
+<td>重入</td>
+<td>业务在执行过程中某一步出现失败，再次调用</td>
+<td>再次调用能够成功</td>
+</tr>
+<tr>
+<td>并发</td>
+<td>对唯一性资源进行并发请求，如并发执行更新、发放、扣減操作</td>
+<td>资源只能操作一次，仅有一个请求能够被正确处理</td>
+</tr>
+</tbody></table>
+<p>依赖服务的异常</p>
+<p>依赖服务的异常指的是依赖的服务无法正常响应时，观察系统的表现。</p>
+<p>主要类型</p>
+<ol>
+<li><p>服务故障：因为各种原因的无法响应请求。2. 服务报错：返回特定错误、异常。</p>
+</li>
+<li><p>状於态不一致：如：异步处理的异常或者底层服务处理成功，上层服务处理响应失败或未收到请求。</p>
+</li>
+</ol>
+<p>说到依赖，会有一个基本概念叫做强依赖和弱依赖：不影响核心业务流程，不影响系统可用性的依赖都可以叫做弱依赖，反之就是强依赖。</p>
+<p>系统之间调用是很复杂的，有应用之间的调用，也有对缓存、DB 等中间件的调用，需要思考ー下：锁、鍰存、消息等是不是对业务来说必须的，应该是强依赖还是弱依赖。几个处理依赖服务异常的原则</p>
+<ol>
+<li>除非走投无路，不会因为依赖的系统引起当前应用出现系统级可用性的故障。2. 对于弱依赖，一般都要配置限流或是自动降级策略。3. 理想情況下，应用启动应该做到 0 虽依赖启动。4. 通过本级的报错信息能够知道是下级哪个依赖引起的问题。</li>
+</ol>
+<p>系统异常</p>
+<p>前面的接口异常以及依赖服务的异常往往关注的是异常对局部功能的影响，而系统异常是在系统实际拓扑架构下，注入异常，观察系统层面的稳定性，需要关注整个系统功能的可用性和系统的故障处理机制。这种方式需要精心设计，以及多方配合进行执行和观察，一般的实施方式是进行线上演练。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/07/30/%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/08/04/%E6%B5%8B%E8%AF%95/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96/pytest/pytest%E5%B8%B8%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%BC%82%E5%B8%B8%E6%B5%8B%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">接口异常测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jialiang_ding</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

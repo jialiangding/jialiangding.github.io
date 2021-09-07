@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="项目测试流程一、需求评审项目启动之前，需要有需求，并且对需求进行评审。测试同学在参与需求评审之前，需要认真阅读需求文档，从而获取相关的信息  这个需求是哪些角色使用的。例如是买家还是卖家，是高级管理员还是库管人员。  不同角色，在什么场景下使用这个功能。例如是 PC 端还是手机端，是微商城版本还是零售版本  整个项目是否存在对象的生命周期流转，比如订单状态的流转、任务的开始执行到执行完毕，同时需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jialiang_ding的博客">
+<meta property="og:url" content="https://jialiangding.github.io/2021/07/30/%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:site_name" content="jialiang_ding的博客">
+<meta property="og:description" content="项目测试流程一、需求评审项目启动之前，需要有需求，并且对需求进行评审。测试同学在参与需求评审之前，需要认真阅读需求文档，从而获取相关的信息  这个需求是哪些角色使用的。例如是买家还是卖家，是高级管理员还是库管人员。  不同角色，在什么场景下使用这个功能。例如是 PC 端还是手机端，是微商城版本还是零售版本  整个项目是否存在对象的生命周期流转，比如订单状态的流转、任务的开始执行到执行完毕，同时需要">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-30T09:41:42.281Z">
+<meta property="article:modified_time" content="2021-09-07T12:29:47.316Z">
+<meta property="article:author" content="jialiang_ding">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jialiangding.github.io/2021/07/30/测试/测试基础/测试流程/"/>
+
+
+
+
+
+  <title> | jialiang_ding的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jialiang_ding的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">记录生活中的点点滴滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jialiangding.github.io/2021/07/30/%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jialiang_ding的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-07-30T17:41:42+08:00">
+                2021-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="项目测试流程"><a href="#项目测试流程" class="headerlink" title="项目测试流程"></a>项目测试流程</h1><h3 id="一、需求评审"><a href="#一、需求评审" class="headerlink" title="一、需求评审"></a>一、需求评审</h3><p>项目启动之前，需要有需求，并且对需求进行评审。测试同学在参与需求评审之前，需要认真阅读需求文档，从而获取相关的信息</p>
+<ol>
+<li><p>这个需求是哪些角色使用的。例如是买家还是卖家，是高级管理员还是库管人员。</p>
+</li>
+<li><p>不同角色，在什么场景下使用这个功能。例如是 PC 端还是手机端，是微商城版本还是零售版本</p>
+</li>
+<li><p>整个项目是否存在对象的生命周期流转，比如<strong>订单状态的流转、任务的开始执行到执行完毕</strong>，同时需要思考在什么条件下会发生怎样的流转。需要明确状态发生变更的条件规则，确保对象生命周期是有终态的。</p>
+</li>
+<li><p>明确每个业务点的人机交互过程和规则，业务过程是否连贯明确</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">需求分析后，可以输出$\color</span><span class="template-tag">&#123;#<span class="name">FF</span>3030&#125;</span><span class="template-variable">&#123;对象生命周期图、业务时序图、用例图、待确认的问题、风险点清单&#125;</span><span class="xml">$</span></span><br></pre></td></tr></table></figure>
+<p>。在需求评审时，就相关问题和风险与产品和开发进行沟通，直到问题得到<strong>明确答复</strong></p>
+<h3 id="二、技术方案评审"><a href="#二、技术方案评审" class="headerlink" title="二、技术方案评审"></a>二、技术方案评审</h3></li>
+</ol>
+<p>需求评审后，开发将技术方案文档准备好，可以开始进行技术方案评审。在技术方案评审中，对于架构、数据表等技术方案细节需要做充分的评估。测试人员需要了解正常的业务流程和实现机制，是否能够实现需求中描述的功能，对其合理性进行评估。此外，还需要关注技术方案中</p>
+<pre><code>**$\color&#123;#FF3030&#125;&#123;并发的控制、幂等的控制、超时的影响、缓存的使用、数据库表索引和性能、事务控制以及异常的处理&#125;$**
+```。
+这些问题在正向流程中往往很难被发现，但是到了线上以后，由于调用量巨大、场景复杂，往往会造成较严重的问题。
+
+由于有赞整体系统业务和模块众多，应用之间调用关系较复杂，还需要注意评估：
+
+・项目对外部业务影响
+
+项目对上层业务影响
+
+数据模型变更和数据迁移的方案
+
+配套的检查和核对程序，比如库存核对、账务核对
+
+### 三、项目立项
+
+项目立项时，开发和测试人员需要根据对目前需求和技术方案的了解，拆分研发任务，评估时间，输出几个重要的里程碑事件点：开发截止时间、测试方案和用例评审时间，测试完成截止时间、上线时间。
+
+有时候会遇到项目太大，评估的时间太长的情况，可考虑进行子项目拆分
+
+对于无强耦合的业务线可单独拆分出子项目先行测试和发布，一般建议子项目的研发周期在 1 个月以内。
+
+对于强耦合的业务，可考虑先对开发完成的功能进行接口测试，再进一步集成。
+
+### 四、测试方案评审
+
+由于很多大型项目涉及多个业务方的测试资源，測试周期和轮次较长，测试负责人需要准备好测试方案，召集各业务线测试负责人进行测试方案的评审最基本工作是对当前功能进行罗列，划分到对应的测试人员进行覆盖，避免出现归属不明导致漏覆盖的情况。
+
+在明确了各业务线测试人员的测试范围后，确认下安排几轮測试以及各业务线的投入时间和完成时间，从而推断出整体的測试时长和完成。一般考虑应用是否是核心应用，开发改动量如果出现投入时间参差不齐的情况，可以考忠是否拆分批次进行测试，最后再安排集成测试的轮次。
+
+除了测试执行范围和时间的评估，对于测试环境和测试数据的淮备工作也需要确定下来，在项目提测前完成。
+
+### 五、测试用例评审
+
+需求和方案评审完成后，测试可以开始编写测试用例，然后邀请开发和产品一起进行对用例进行评审，记录下评审中发现的问题。
+
+评审结束后需要补充遗漏的点，同时标注下冒烟用例，给出大概的比例；给出冒烟用例提供的时间点，不耽误开发自测。
+
+### 六、冒烟测试
+
+完成代码开发和联调后，开发会进行提测，测试根据提测文档接受提测后，开始进行冒烟测试，主要针对主流程的场景进行测试，查看看是否有功能未完成或者阻塞后续测试的情况。冒烟测试结束后，群里同步冒烟测试结果。
+
+冒烟用例需要 100%通过；冒烟通过后再进行第一轮新功能测试，不通过打回
+
+### 七、功能测试
+
+在功能測试阶段，发现问题由对应的测试同学提交 bug，在功能测试前需要约定 bug 修复时间，如果开发解决不及时可及时上升给 TL。
+
+业务线测试负责人在功能测试阶段**定期反馈进度**，测试 ptm 汇总每日的项目测试报告发邮件或发送到项目群里。
+
+根据测试策略分成几个轮次进行测试，一股会分为两轮
+
+* 第一轮新功能测试。直接在冒烟测试通过时部署的环境完成第一轮测试，不再重新部署。如果第一轮结束质量 ok 且环境可用于验证，可以开始考虑产品和设计师介入验收。当致命、严重 bug 解決率达到 100%，可以进行下一轮测试
+* 第二轮回归验证，回归新的改动对原有功能的影响。当 bug 已收敛（每日新增 bug 数则体递减；每日遗留 bug 数整体递减），可以准备到预发环境进行上线前的测试。比较大型的项目，新功能的测试会分为两轮或者更多轮，最后一轮为项目集成测试，在项目集成測试中，需要对业务线完整的流程进行集成测试，需要注意几点
+
+1. 如果是大项目拆子项目，在这个环节统一部署一个环境，各业务线走一次全链路回归
+2. 回归新的改动对原有功能的影响
+
+3. 測试期间同样锁定环境，部署频率建议控制在半天或一天合入一次
+
+4. 集成测试通过标准：致命、严重 bug 解決率 100%，普通和微小 bug 解決率 70%。达到通过标准才允许进行预发环境的验证
+5. 不允许非UI类、文案类的需求变更合入。此时的需求变更，开发和测试同学比较难以评估影响和验证完成，容易影响原有功能，造成漏侧
+
+### 八、产品验收
+
+当測试进入尾声，产品功能基本稳定后，邀请产品对已实现的功能验收完成，确认最终实现效果是否符合预期、确认整体交互流程是否 ok。
+
+### 九、发布前准备
+
+发布前，pm、产品、开发、測试一起讨论上线前的准备，測试需要确认应用都达到可以发布的状态，需要增加的配置、需要变更的 DL 都已经记录在发布方案里面，如果有依赖的应用和顼目需要确认发布的顺序，最后各方确认无误输出一份发布计划，需要包含每个应用的发布顺序、责任人、发布后验证点以及项目回滚方案（回滚顺序、数据修复方案）
+
+### 十、预发回归测试
+
+测试环境验证结束，測试会在预发环境进行回归，主要工作是小的 bugfix 的验证以及基本用例的回归，一般情况下不允许有非 bugfix 类的代码合入，如果出现需求变更导致的代码合入，需要在测试环境充分验证后再进行预发验证。
+
+### 十一、上线
+
+预发验证完成后，确认下上线前的准备工作是否完成
+
+1. 测试工作都完成了，剩余未解決 BUG 的缺陷率《5 分（缺陷率=致命数目*10+严重数目*3+普通数目*1+微小数目*0.1) 
+2. 输出项目质量报告，反馈项目质量状况和风险
+3. 产品视觉验收通过
+4. 输出了发布上线计划
+确认完成后可以按发布计划发布，发布完成后测试验证功能，开发和测试发布当天和第二天观察流量和告警，如有功能问题第一时间回液。
+最后，当发布验证通过后，同步项目进度到项目群。
+
+### 十二、总结和复盘
+
+项目上线后不代表所有工作都已经做完，首先对项目过程中的质量问题进行分析，主要对于 bug 数目、严重程度和原因进行分析，思考下如何预防和减少类似质量问题。如果是大型项目或者项目的进度或者质量方面存在一些问题，会对项目过程进行必要的复盘，提出一些改进措施和建议，进行针对性改进，使得后续项目能够运行得更顺利。
+最后，测试同学需要把项目里新增特性的用例需要加入到基线用例，避免特性的遗漏，同时新增的自动化用例随着项目上线后也需要合入到测试工程的 master 分支上，并确保新增用例和老用例都能运行通过。
+
+</code></pre>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/07/30/%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%8F%8A%E6%B5%8B%E8%AF%95%E6%96%B9%E6%A1%88%E8%AE%BE%E8%AE%A1/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/07/30/%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E5%9F%BA%E7%A1%80/%E6%8E%A5%E5%8F%A3%E5%BC%82%E5%B8%B8%E6%B5%8B%E8%AF%95/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">项目测试流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%9C%80%E6%B1%82%E8%AF%84%E5%AE%A1"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、需求评审</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E8%AF%84%E5%AE%A1"><span class="nav-number">1.0.2.</span> <span class="nav-text">二、技术方案评审</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jialiang_ding</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

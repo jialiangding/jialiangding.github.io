@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="country()：国家province()：省份city_suffix()：市，县district()：区street_address()：街道地址street_name()：街道名street_suffix()：街、路country_code()：国家编码postcode()：邮编geo_coordinate()：地理坐标longitude()：经度latitude()：纬度lexify()：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jialiang_ding的博客">
+<meta property="og:url" content="https://jialiangding.github.io/2021/08/10/%E6%B5%8B%E8%AF%95/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96/faker.py%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="jialiang_ding的博客">
+<meta property="og:description" content="country()：国家province()：省份city_suffix()：市，县district()：区street_address()：街道地址street_name()：街道名street_suffix()：街、路country_code()：国家编码postcode()：邮编geo_coordinate()：地理坐标longitude()：经度latitude()：纬度lexify()：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-10T06:11:12.971Z">
+<meta property="article:modified_time" content="2021-08-23T07:11:17.277Z">
+<meta property="article:author" content="jialiang_ding">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://jialiangding.github.io/2021/08/10/测试/接口自动化/faker.py常用方法/"/>
+
+
+
+
+
+  <title> | jialiang_ding的博客</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jialiang_ding的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">记录生活中的点点滴滴</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://jialiangding.github.io/2021/08/10/%E6%B5%8B%E8%AF%95/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96/faker.py%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jialiang_ding的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-08-10T14:11:12+08:00">
+                2021-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>country()：国家<br>province()：省份<br>city_suffix()：市，县<br>district()：区<br>street_address()：街道地址<br>street_name()：街道名<br>street_suffix()：街、路<br>country_code()：国家编码<br>postcode()：邮编<br>geo_coordinate()：地理坐标<br>longitude()：经度<br>latitude()：纬度<br>lexify()：替换所有问号？带有随机事件<br>numerify()：生成三位随机数<br>random_digit()：生成0<del>9随机数<br>random_digit_not_null()：生成1</del>9的随机数<br>random_element()：生成随机字母<br>random_int()：随机数字，默认0~9999，可通过min,max参数修改<br>random_letter()：随机字母<br>random_number()：随机数字，参数digits设置生成的数字位数<br>color_name()：随机颜色名<br>hex_color()：随机HEX颜色<br>rgb_color()：随机RGB颜色<br>safe_color_name()：随机安全色名<br>safe_hex_color()：随机安全HEX颜色<br>bs()：随机公司服务名<br>company()：随机公司名（长）<br>company_prefix()：随机公司名（短）<br>company_suffix()：公司性质<br>credit_card_expire()：随机信用卡到期日<br>credit_card_full()：生成完整信用卡信息<br>credit_card_number()：信用卡号<br>credit_card_provider()：信用卡类型<br>credit_card_security_code()：信用卡安全码<br>currency_code()：货币编码<br>am_pm()：AM/PM<br>century()：随机世纪<br>date()：随机日期<br>date_between()：随机生成指定范围内日期，参数：start_date，end_date<br>date_between_dates()：随机生成指定范围内日期，用法同上<br>date_object()：随机生产从1970-1-1到指定日期的随机日期。<br>date_this_month()：<br>date_this_year()：<br>date_time()：随机生成指定时间（1970年1月1日至今）<br>date_time_ad()：生成公元1年到现在的随机时间<br>date_time_between()：用法同dates<br>future_date()：未来日期<br>future_datetime()：未来时间<br>month()：随机月份<br>month_name()：随机月份（英文）<br>past_date()：随机生成已经过去的日期<br>past_datetime()：随机生成已经过去的时间<br>time()：随机24小时时间<br>timedelta()：随机获取时间差<br>time_object()：随机24小时时间，time对象<br>time_series()：随机TimeSeries对象<br>timezone()：随机时区<br>unix_time()：随机Unix时间<br>year()：随机年份<br>file_extension()：随机文件扩展名<br>file_name()：随机文件名（包含扩展名，不包含路径）<br>file_path()：随机文件路径（包含文件名，扩展名）<br>mime_type()：随机mime Type<br>ascii_company_email()：随机ASCII公司邮箱名<br>ascii_email()：随机ASCII邮箱<br>ascii_free_email()：<br>ascii_safe_email()：<br>company_email()：<br>domain_name()：生成域名<br>domain_word()：域词(即，不包含后缀)<br>email()：<br>free_email()：<br>free_email_domain()：<br>f.safe_email()：安全邮箱<br>f.image_url()：随机URL地址<br>ipv4()：随机IP4地址<br>ipv6()：随机IP6地址<br>mac_address()：随机MAC地址<br>tld()：网址域名后缀<br>uri()：随机URI地址<br>uri_extension()：网址文件后缀<br>uri_page()：网址文件（不包含后缀）<br>uri_path()：网址文件路径（不包含文件名）<br>url()：随机URL地址<br>user_name()：随机用户名<br>isbn10()：随机ISBN（10位）<br>isbn13()：随机ISBN（13位）<br>job()：随机职位<br>paragraph()：随机生成一个段落<br>paragraphs()：随机生成多个段落，通过参数nb来控制段落数，返回数组<br>sentence()：随机生成一句话<br>sentences()：随机生成多句话，与段落类似<br>text()：随机生成一篇文章<br>word()：随机生成词语<br>words()：随机生成多个词语，用法与段落，句子，类似<br>binary()：随机生成二进制编码<br>boolean()：True/False<br>language_code()：随机生成两位语言编码<br>locale()：随机生成语言/国际 信息<br>md5()：随机生成MD5<br>null_boolean()：NULL/True/False<br>password()：随机生成密码,可选参数：length：密码长度；special_chars：是否能使用特殊字符；digits：是否包含数字；upper_case：是否包含大写字母；lower_case：是否包含小写字母<br>sha1()：随机SHA1<br>sha256()：随机SHA256<br>uuid4()：随机UUID<br>first_name()：<br>first_name_female()：女性名<br>first_name_male()：男性名<br>first_romanized_name()：罗马名<br>last_name()：<br>last_name_female()：女<br>last_name_male()：男<br>last_romanized_name()：<br>name()：随机生成姓名<br>name_female()：男性姓名<br>name_male()：女性姓名<br>romanized_name()：罗马名<br>msisdn()：移动台国际用户识别码，即移动用户的ISDN号码<br>phone_number()：随机生成手机号<br>phonenumber_prefix()：随机生成手机号段<br>profile()：随机生成档案信息<br>simple_profile()：随机生成简单档案信息</p>
+<p>ssn()：生成身份证号<br>530227976055423776<br>chrome()：随机生成Chrome的浏览器user_agent信息</p>
+<p>firefox()：随机生成FireFox的浏览器user_agent信息</p>
+<p>internet_explorer()：随机生成IE的浏览器user_agent信息</p>
+<p>opera()：随机生成Opera的浏览器user_agent信息</p>
+<p>safari()：随机生成Safari的浏览器user_agent信息</p>
+<p>linux_platform_token()：随机Linux信息</p>
+<p>user_agent()：随机user_agent信息</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/08/04/%E6%B5%8B%E8%AF%95/%E6%8E%A5%E5%8F%A3%E8%87%AA%E5%8A%A8%E5%8C%96/pytest/pytest%E5%B8%B8%E7%94%A8%E8%A3%85%E9%A5%B0%E5%99%A8/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/08/18/%E6%B5%8B%E8%AF%95/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/charles%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%7C%7Carchive">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jialiang_ding</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
