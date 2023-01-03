@@ -4,17 +4,18 @@
   <meta charset="utf-8">
   
   
-  <title>charles抓包工具的使用 | Hexo</title>
+  <title>白盒测试--6种覆盖方法判定 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="charles抓包工具的使用">
-<meta property="og:url" content="http://example.com/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+  <meta name="description" content="语句覆盖123456if(A&amp;&amp;B)&amp;#123;    do actionA&amp;#125;if(C||D)&amp;#123;    do actionB&amp;#125;  设计出来的用例要保证程序中的每个语句至少被执行一次∴ 这里给到用例就是 A&#x3D;True B&#x3D;True C&#x3D;True  分支覆盖123456if(A&amp;&amp;B)&amp;#123;    do">
+<meta property="og:type" content="article">
+<meta property="og:title" content="白盒测试--6种覆盖方法判定">
+<meta property="og:url" content="http://example.com/2023/01/02/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="语句覆盖123456if(A&amp;&amp;B)&amp;#123;    do actionA&amp;#125;if(C||D)&amp;#123;    do actionB&amp;#125;  设计出来的用例要保证程序中的每个语句至少被执行一次∴ 这里给到用例就是 A&#x3D;True B&#x3D;True C&#x3D;True  分支覆盖123456if(A&amp;&amp;B)&amp;#123;    do">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-10-25T06:05:30.000Z">
-<meta property="article:modified_time" content="2022-10-26T07:39:08.006Z">
+<meta property="article:published_time" content="2023-01-01T16:17:59.000Z">
+<meta property="article:modified_time" content="2023-01-01T16:33:58.683Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="chrales">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -72,16 +73,12 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-charles抓包工具的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-白盒测试" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2022-10-25T06:05:30.000Z" itemprop="datePublished">2022-10-25</time>
+    <a href="/2023/01/02/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/" class="article-date">
+  <time class="dt-published" datetime="2023-01-01T16:17:59.000Z" itemprop="datePublished">2023-01-02</time>
 </a>
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">测试工具</a>
-  </div>
-
   </div>
   <div class="article-inner">
     
@@ -90,7 +87,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      charles抓包工具的使用
+      白盒测试--6种覆盖方法判定
     </h1>
   
 
@@ -98,35 +95,52 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <ol>
+<li>语句覆盖<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(A&amp;&amp;B)&#123;</span><br><span class="line">    do actionA</span><br><span class="line">&#125;</span><br><span class="line">if(C||D)&#123;</span><br><span class="line">    do actionB</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>设计出来的用例要保证程序中的每个语句至少被执行一次<br>∴ 这里给到用例就是 A&#x3D;True B&#x3D;True C&#x3D;True</p>
+<ol start="2">
+<li>分支覆盖<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(A&amp;&amp;B)&#123;</span><br><span class="line">    do actionA</span><br><span class="line">&#125;</span><br><span class="line">if(C||D)&#123;</span><br><span class="line">    do actionB</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+至少覆盖一次决策点每个条件的所有可能结果(对与错)</li>
+</ol>
+<p>A&amp;&amp;B&#x3D;False<br>A&amp;&amp;B&#x3D;True<br>C||D&#x3D;True<br>C||D&#x3D;False</p>
+<ol start="3">
+<li><p>条件覆盖</p>
+</li>
+<li><p>判定条件覆盖</p>
+</li>
+<li><p>路径覆盖</p>
+</li>
+<li><p>组合覆盖</p>
+</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cla7z7c9k0002lctt98qifu5o" data-title="charles抓包工具的使用" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2023/01/02/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/" data-id="clcg28vv30003r0tt47s8hs53" data-title="白盒测试--6种覆盖方法判定" class="article-share-link">Share</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chrales/" rel="tag">chrales</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2022/10/26/%E4%BD%BF%E7%94%A8jmeter%E9%98%B6%E6%A2%AF%E5%BC%8F%E5%8A%A0%E5%8E%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2023/01/03/mysql%E7%9A%84%E9%94%81/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          使用jmeter阶梯式加压
+          mysql的锁
         
       </div>
     </a>
   
   
-    <a href="/2022/10/25/jmeter%E7%BA%BF%E7%A8%8B%E7%BB%84%E7%9A%84%E9%85%8D%E7%BD%AE-%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/12/28/%E5%B9%B6%E5%8F%91%E7%94%A8%E6%88%B7%E6%95%B0%E5%A6%82%E4%BD%95%E7%AE%97/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">jmeter线程组的配置---详解</div>
+      <div class="article-nav-title">并发用户数如何算</div>
     </a>
   
 </nav>

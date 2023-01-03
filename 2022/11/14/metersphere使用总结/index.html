@@ -4,13 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>metersphere使用总结 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="1. 在MeterSphere接口测试中如何设置使用变量 环境中设置环境变量 前置&#x2F;后置脚本中设置变量 再引用 场景变量—场景中使用  2. MeterSphere接口测试提取数组及引用 2.1 提取数组中某个特定值$.data[1].typeName 提取特定值 $.data.records[0].orderNoorderNo：[“ZL145050170409247653”] 2.2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="metersphere使用总结">
+<meta property="og:url" content="http://example.com/2022/11/14/metersphere%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. 在MeterSphere接口测试中如何设置使用变量 环境中设置环境变量 前置&#x2F;后置脚本中设置变量 再引用 场景变量—场景中使用  2. MeterSphere接口测试提取数组及引用 2.1 提取数组中某个特定值$.data[1].typeName 提取特定值 $.data.records[0].orderNoorderNo：[“ZL145050170409247653”] 2.2">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-11-14T15:22:55.000Z">
+<meta property="article:modified_time" content="2022-12-07T10:39:01.989Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -69,166 +73,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-mysql的锁" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/01/03/mysql%E7%9A%84%E9%94%81/" class="article-date">
-  <time class="dt-published" datetime="2023-01-03T09:34:55.000Z" itemprop="datePublished">2023-01-03</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/01/03/mysql%E7%9A%84%E9%94%81/">mysql的锁</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>按照锁粒度进行划分锁用来对数据进行锁定，我们可以从锁定对象的粒度大小来对锁进行划分，分别为行锁、页锁和表锁。</li>
-</ol>
-<p>顾名思义，行锁就是按照行的粒度对数据进行锁定。锁定力度小，发生锁冲突概率低，可以实现的并发度高，但是对于锁的开销比较大，加锁会比较慢，容易出现死锁情况。页锁就是在页的粒度上进行锁定，锁定的数据资源比行锁要多，因为一个页中可以有多个行记录。当我们使用页锁的时候，会出现数据浪费的现象，但这样的浪费最多也就是一个页上的数据行。页锁的开销介于表锁和行锁之间，会出现死锁。锁定粒度介于表锁和行锁之间，并发度一般。表锁就是对数据表进行锁定，锁定粒度很大，同时发生锁冲突的概率也会较高，数据访问的并发度低。不过好处在于对锁的使用开销小，加锁会很快。行锁、页锁和表锁是相对常见的三种锁，除此以外我们还可以在区和数据库的粒度上锁定数据，对应区锁和数据库锁。不同的数据库和存储引擎支持的锁粒度不同，InnoDB 和 Oracle 支持行锁和表锁。而 MyISAM 只支持表锁，MySQL 中的 BDB 存储引擎支持页锁和表锁。SQL Server 可以同时支持行锁、页锁和表锁，</p>
-<ol start="2">
-<li>数据库管理的角度对锁进行划分除了按照锁粒度大小对锁进行划分外，我们还可以从数据库管理的角度对锁进行划分。共享锁和排它锁，是我们经常会接触到的两把锁。<br>共享锁也叫读锁或 S 锁，共享锁锁定的资源可以被其他用户读取，但不能修改。在进行SELECT的时候，会将对象进行共享锁锁定，当数据读取完毕之后，就会释放共享锁，这样就可以保证数据在读取时不被修改。</li>
-</ol>
-<p>是当共享锁没有释放时，不能对锁住的数据进行修改。如果我们想要对表上的共享锁进行解锁，可以使用下面这行命令： UNLOCK TABLE;</p>
-<p> 如果我们想要给某一行加上共享锁呢，比如想对 user_id&#x3D;912178 的数据行加上共享锁，可以像下面这样：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> comment_id, product_id, comment_text, user_id <span class="keyword">FROM</span> product_comment <span class="keyword">WHERE</span> user_id <span class="operator">=</span> <span class="number">912178</span> LOCK <span class="keyword">IN</span> SHARE MODE</span><br></pre></td></tr></table></figure>
-
-<p>排它锁也叫独占锁、写锁或 X 锁。排它锁锁定的数据只允许进行锁定操作的事务使用，其他事务无法对已锁定的数据进行查询或修改。</p>
-<ol start="3">
-<li>从程序员的角度进行划分如果从程序员的视角来看锁的话，可以将锁分成乐观锁和悲观锁，从名字中也可以看出这两种锁是两种看待数据并发的思维方式。</li>
-</ol>
-<p>总结<br>今天我们讲解了数据库中锁的划分，你能看到从不同维度都可以对锁进行划分，需要注意的是，乐观锁和悲观锁并不是锁，而是锁的设计思想。既然有锁的存在，就有可能发生死锁的情况。死锁就是多个事务（如果是在程序层面就是多个进程）在执行过程中，因为竞争某个相同的资源而造成阻塞的现象。发生死锁，往往是因为在事务中，锁的获取是逐步进行的。</p>
-<p>java中的cas的实现<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_58196614/article/details/126456040">https://blog.csdn.net/m0_58196614/article/details/126456040</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/01/03/mysql%E7%9A%84%E9%94%81/" data-id="clcg28vv10001r0tthj3g2fw8" data-title="mysql的锁" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-白盒测试" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/01/02/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/" class="article-date">
-  <time class="dt-published" datetime="2023-01-01T16:17:59.000Z" itemprop="datePublished">2023-01-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/01/02/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/">白盒测试--6种覆盖方法判定</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>语句覆盖<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(A&amp;&amp;B)&#123;</span><br><span class="line">    do actionA</span><br><span class="line">&#125;</span><br><span class="line">if(C||D)&#123;</span><br><span class="line">    do actionB</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-<p>设计出来的用例要保证程序中的每个语句至少被执行一次<br>∴ 这里给到用例就是 A&#x3D;True B&#x3D;True C&#x3D;True</p>
-<ol start="2">
-<li>分支覆盖<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(A&amp;&amp;B)&#123;</span><br><span class="line">    do actionA</span><br><span class="line">&#125;</span><br><span class="line">if(C||D)&#123;</span><br><span class="line">    do actionB</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-至少覆盖一次决策点每个条件的所有可能结果(对与错)</li>
-</ol>
-<p>A&amp;&amp;B&#x3D;False<br>A&amp;&amp;B&#x3D;True<br>C||D&#x3D;True<br>C||D&#x3D;False</p>
-<ol start="3">
-<li><p>条件覆盖</p>
-</li>
-<li><p>判定条件覆盖</p>
-</li>
-<li><p>路径覆盖</p>
-</li>
-<li><p>组合覆盖</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/01/02/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/" data-id="clcg28vv30003r0tt47s8hs53" data-title="白盒测试--6种覆盖方法判定" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-并发用户数如何算" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/12/28/%E5%B9%B6%E5%8F%91%E7%94%A8%E6%88%B7%E6%95%B0%E5%A6%82%E4%BD%95%E7%AE%97/" class="article-date">
-  <time class="dt-published" datetime="2022-12-28T01:34:40.000Z" itemprop="datePublished">2022-12-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">性能测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/12/28/%E5%B9%B6%E5%8F%91%E7%94%A8%E6%88%B7%E6%95%B0%E5%A6%82%E4%BD%95%E7%AE%97/">并发用户数如何算</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>当T&#x3D;用户数时<br>TPS&#x3D;1000ms​&#x2F;响应时间(单位ms)∗压力机线程数</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/12/28/%E5%B9%B6%E5%8F%91%E7%94%A8%E6%88%B7%E6%95%B0%E5%A6%82%E4%BD%95%E7%AE%97/" data-id="clcg28vuz0000r0tt66k1g50z" data-title="并发用户数如何算" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jmeter/" rel="tag">jmeter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%A7%E8%83%BD/" rel="tag">性能</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-metersphere使用总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-metersphere使用总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/11/14/metersphere%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/" class="article-date">
   <time class="dt-published" datetime="2022-11-14T15:22:55.000Z" itemprop="datePublished">2022-11-14</time>
@@ -241,8 +86,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/14/metersphere%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">metersphere使用总结</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      metersphere使用总结
     </h1>
   
 
@@ -292,258 +137,28 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-jmeter计数器" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/11/08/jmeter%E8%AE%A1%E6%95%B0%E5%99%A8/" class="article-date">
-  <time class="dt-published" datetime="2022-11-08T05:31:38.000Z" itemprop="datePublished">2022-11-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/jmeter/">jmeter</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2022/12/28/%E5%B9%B6%E5%8F%91%E7%94%A8%E6%88%B7%E6%95%B0%E5%A6%82%E4%BD%95%E7%AE%97/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          并发用户数如何算
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/11/08/jmeter%E8%AE%A1%E6%95%B0%E5%99%A8/">jmeter计数器</a>
-    </h1>
   
+    <a href="/2022/11/08/jmeter%E8%AE%A1%E6%95%B0%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">jmeter计数器</div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="https://note.youdao.com/yws/api/personal/file/WEB599b48c5f5342501cca42175c42f3beb?method=download&shareKey=91051b1b0683be4bc8516e9d9ab78b36" alt="avatar"></p>
-<p>sds </p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/11/08/jmeter%E8%AE%A1%E6%95%B0%E5%99%A8/" data-id="cla7z7c9u0006lctt6sqh8yo8" data-title="jmeter计数器" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jmeter/" rel="tag">jmeter</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
-    <article id="post-使用jmeter阶梯式加压" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/26/%E4%BD%BF%E7%94%A8jmeter%E9%98%B6%E6%A2%AF%E5%BC%8F%E5%8A%A0%E5%8E%8B/" class="article-date">
-  <time class="dt-published" datetime="2022-10-26T07:42:16.000Z" itemprop="datePublished">2022-10-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">性能测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/26/%E4%BD%BF%E7%94%A8jmeter%E9%98%B6%E6%A2%AF%E5%BC%8F%E5%8A%A0%E5%8E%8B/">使用jmeter阶梯式加压</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>安装Custom Thread Groups插件<br>plugins manager-&gt;available plugins-&gt;搜索Custom Thread Groups插件-&gt;勾选-&gt;点击Apply Changes and Restart Jmeter<br> <img src="https://note.youdao.com/yws/api/personal/file/WEB63c8646b934f71ebd46ac846f470403d?method=download&shareKey=e18c9ddd4eaed784056eddf449e30b5f" alt="avatar"></p>
-</li>
-<li><p>选择bzm - Concurrency Thread Group线程组<br>   <img src="https://note.youdao.com/yws/api/personal/file/WEB8b4fc344dfb0f9e378dbc08f594f3e73?method=download&shareKey=acc0add7f6cd22074bccbb57df6d52e8" alt="avatar"></p>
-</li>
-<li><p>bzm - Concurrency Thread Group配置参数<br><img src="https://note.youdao.com/yws/api/personal/file/WEB052f1621c1b910e3a45175588016322e?method=download&shareKey=e574cec8e3a59a518639963e15502640" alt="avatar"><br><br> Target Concurrency : 目标并发线程数<br> Ramp Up Time(min) : 在多少时间内启动到目标并发线程数<br> Ramp-Up Steps Count : 启动之后到达目标并发线程数的 阶梯数<br> Hold Target Rate Time(min) : 达到目标线程并发数之后，持续运行多长时间<br> Time Unit:minutes seconds : 分&#x2F;秒<br> Thread lterations Limit : 线程循环次数<br> Log Threads Status into File : 将线程状态记录到文件</p>
-</li>
-<li><p>下载监听插件<br> Plugins Manager主要插件介绍</p>
-<p> 1）PerfMon：监控服务器硬件，如CPU，内存，硬盘读写速度等 </p>
-<p> 2）3 Basic Graphs：主要显示平均响应时间，活动线程数，成功&#x2F;失败交易数等</p>
-<p> 3）5 Additional Graphs：主要显示吞吐量，连接时间，每秒的点击数等</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/26/%E4%BD%BF%E7%94%A8jmeter%E9%98%B6%E6%A2%AF%E5%BC%8F%E5%8A%A0%E5%8E%8B/" data-id="cla7z7c9z000hlcttbiig200l" data-title="使用jmeter阶梯式加压" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jmeter/" rel="tag">jmeter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%A7%E8%83%BD/" rel="tag">性能</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-charles抓包工具的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2022-10-25T06:05:30.000Z" itemprop="datePublished">2022-10-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">测试工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">charles抓包工具的使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cla7z7c9k0002lctt98qifu5o" data-title="charles抓包工具的使用" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chrales/" rel="tag">chrales</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-jmeter线程组的配置-详解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/25/jmeter%E7%BA%BF%E7%A8%8B%E7%BB%84%E7%9A%84%E9%85%8D%E7%BD%AE-%E8%AF%A6%E8%A7%A3/" class="article-date">
-  <time class="dt-published" datetime="2022-10-25T03:00:59.000Z" itemprop="datePublished">2022-10-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">性能测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/25/jmeter%E7%BA%BF%E7%A8%8B%E7%BB%84%E7%9A%84%E9%85%8D%E7%BD%AE-%E8%AF%A6%E8%A7%A3/">jmeter线程组的配置---详解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="https://note.youdao.com/yws/api/personal/file/WEB85c140e0e43c6c8cf38e1f82531a5bbc?method=download&shareKey=6ac63f81dddfa9109a432a6466a3aceb" alt="avatar"></p>
-<p><strong>线程数</strong>:线程数，也可以称之为用户数,这个线程数是产生 TPS 的，而一个线程产生多少 TPS，取决于系统的响应时间有多快。</p>
-<p><strong>Ramp-up Period(in seconds):递增时间</strong>，以秒为单位。指的就是上面配置的线程数将在多长时间内会全部递增完。如果我们配置了 100 线程，这里配置为 10 秒，那么就是 100&#x2F;(10s*1000ms)&#x3D;1 线程 &#x2F;100ms；如果我们配置了 10 线程，这里配置为 1 秒，则是 10&#x2F;1000&#x3D;1 线程 &#x2F;100ms。这时我们要注意了哦，在 10 线程启动的这个阶段中，对服务器的压力是一样的</p>
-<p><strong>循环次数</strong>:这个值指的是一个线程中脚本迭代的次数。这里你需要注意，这个值和后面的 Scheduler(调度) 有一个判断关系</p>
-<p><strong>延迟创建线程直到需要</strong>:这个含义从字面看不是特别清楚。这里有一个默认的知识点，那就是 JMeter 所有的线程是一开始就创建完成的，只是递增的时候会按照上面的规则递增。如果选择了这个选项，则不会在一开始创建所有线程，只有在需要时才会创建。这一点和 LoadRunner 中的初始化选项类似。只是不知道你有没有注意过，基本上，我们做性能测试的工程师，很少有选择这个选项的。选与不选之间，区别到底是什么呢？如果不选择，在启动场景时，JMeter 会用更多的 CPU 来创建线程，它会影响前面的一些请求的响应时间，因为压力机的 CPU 在做其他事情嘛。<br>如果选择了的话，就会在使用时再创建，CPU 消耗会平均一些，但是这时会有另一个隐患，就是会稍微影响正在跑的线程。这个选项，选择与否，取决于压力机在执行过程中，它能产生多大的影响。如果你的线程数很多，一旦启动，压力机的 CPU 都被消耗在创建线程上了，那就可以考虑选择它，否则，可以不选择。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/jmeter%E7%BA%BF%E7%A8%8B%E7%BB%84%E7%9A%84%E9%85%8D%E7%BD%AE-%E8%AF%A6%E8%A7%A3/" data-id="cla7z7c9o0003lcttbdhz46l7" data-title="jmeter线程组的配置---详解" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jmeter/" rel="tag">jmeter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%A7%E8%83%BD/" rel="tag">性能</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/25/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-10-24T16:14:39.723Z" itemprop="datePublished">2022-10-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/25/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/hello-world/" data-id="cla7z7c9h0001lcttenj4c09d" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
 </section>

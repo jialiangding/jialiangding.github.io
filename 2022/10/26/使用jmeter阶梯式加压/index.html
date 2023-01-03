@@ -4,18 +4,25 @@
   <meta charset="utf-8">
   
   
-  <title>charles抓包工具的使用 | Hexo</title>
+  <title>使用jmeter阶梯式加压 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="charles抓包工具的使用">
-<meta property="og:url" content="http://example.com/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+  <meta name="description" content="安装Custom Thread Groups插件plugins manager-&gt;available plugins-&gt;搜索Custom Thread Groups插件-&gt;勾选-&gt;点击Apply Changes and Restart Jmeter   选择bzm - Concurrency Thread Group线程组     bzm - Concurrency Th">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用jmeter阶梯式加压">
+<meta property="og:url" content="http://example.com/2022/10/26/%E4%BD%BF%E7%94%A8jmeter%E9%98%B6%E6%A2%AF%E5%BC%8F%E5%8A%A0%E5%8E%8B/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安装Custom Thread Groups插件plugins manager-&gt;available plugins-&gt;搜索Custom Thread Groups插件-&gt;勾选-&gt;点击Apply Changes and Restart Jmeter   选择bzm - Concurrency Thread Group线程组     bzm - Concurrency Th">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-10-25T06:05:30.000Z">
-<meta property="article:modified_time" content="2022-10-26T07:39:08.006Z">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB63c8646b934f71ebd46ac846f470403d?method=download&shareKey=e18c9ddd4eaed784056eddf449e30b5f">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB8b4fc344dfb0f9e378dbc08f594f3e73?method=download&shareKey=acc0add7f6cd22074bccbb57df6d52e8">
+<meta property="og:image" content="https://note.youdao.com/yws/api/personal/file/WEB052f1621c1b910e3a45175588016322e?method=download&shareKey=e574cec8e3a59a518639963e15502640">
+<meta property="article:published_time" content="2022-10-26T07:42:16.000Z">
+<meta property="article:modified_time" content="2022-11-08T05:30:33.194Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="chrales">
+<meta property="article:tag" content="性能">
+<meta property="article:tag" content="jmeter">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://note.youdao.com/yws/api/personal/file/WEB63c8646b934f71ebd46ac846f470403d?method=download&shareKey=e18c9ddd4eaed784056eddf449e30b5f">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -72,14 +79,14 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-charles抓包工具的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-使用jmeter阶梯式加压" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2022-10-25T06:05:30.000Z" itemprop="datePublished">2022-10-25</time>
+    <a href="/2022/10/26/%E4%BD%BF%E7%94%A8jmeter%E9%98%B6%E6%A2%AF%E5%BC%8F%E5%8A%A0%E5%8E%8B/" class="article-date">
+  <time class="dt-published" datetime="2022-10-26T07:42:16.000Z" itemprop="datePublished">2022-10-26</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">测试工具</a>
+    <a class="article-category-link" href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">性能测试</a>
   </div>
 
   </div>
@@ -90,7 +97,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      charles抓包工具的使用
+      使用jmeter阶梯式加压
     </h1>
   
 
@@ -98,15 +105,28 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        
+        <ol>
+<li><p>安装Custom Thread Groups插件<br>plugins manager-&gt;available plugins-&gt;搜索Custom Thread Groups插件-&gt;勾选-&gt;点击Apply Changes and Restart Jmeter<br> <img src="https://note.youdao.com/yws/api/personal/file/WEB63c8646b934f71ebd46ac846f470403d?method=download&shareKey=e18c9ddd4eaed784056eddf449e30b5f" alt="avatar"></p>
+</li>
+<li><p>选择bzm - Concurrency Thread Group线程组<br>   <img src="https://note.youdao.com/yws/api/personal/file/WEB8b4fc344dfb0f9e378dbc08f594f3e73?method=download&shareKey=acc0add7f6cd22074bccbb57df6d52e8" alt="avatar"></p>
+</li>
+<li><p>bzm - Concurrency Thread Group配置参数<br><img src="https://note.youdao.com/yws/api/personal/file/WEB052f1621c1b910e3a45175588016322e?method=download&shareKey=e574cec8e3a59a518639963e15502640" alt="avatar"><br><br> Target Concurrency : 目标并发线程数<br> Ramp Up Time(min) : 在多少时间内启动到目标并发线程数<br> Ramp-Up Steps Count : 启动之后到达目标并发线程数的 阶梯数<br> Hold Target Rate Time(min) : 达到目标线程并发数之后，持续运行多长时间<br> Time Unit:minutes seconds : 分&#x2F;秒<br> Thread lterations Limit : 线程循环次数<br> Log Threads Status into File : 将线程状态记录到文件</p>
+</li>
+<li><p>下载监听插件<br> Plugins Manager主要插件介绍</p>
+<p> 1）PerfMon：监控服务器硬件，如CPU，内存，硬盘读写速度等 </p>
+<p> 2）3 Basic Graphs：主要显示平均响应时间，活动线程数，成功&#x2F;失败交易数等</p>
+<p> 3）5 Additional Graphs：主要显示吞吐量，连接时间，每秒的点击数等</p>
+</li>
+</ol>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cla7z7c9k0002lctt98qifu5o" data-title="charles抓包工具的使用" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/10/26/%E4%BD%BF%E7%94%A8jmeter%E9%98%B6%E6%A2%AF%E5%BC%8F%E5%8A%A0%E5%8E%8B/" data-id="cla7z7c9z000hlcttbiig200l" data-title="使用jmeter阶梯式加压" class="article-share-link">Share</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chrales/" rel="tag">chrales</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jmeter/" rel="tag">jmeter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%A7%E8%83%BD/" rel="tag">性能</a></li></ul>
 
     </footer>
   </div>
@@ -114,19 +134,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/10/26/%E4%BD%BF%E7%94%A8jmeter%E9%98%B6%E6%A2%AF%E5%BC%8F%E5%8A%A0%E5%8E%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2022/11/08/jmeter%E8%AE%A1%E6%95%B0%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          使用jmeter阶梯式加压
+          jmeter计数器
         
       </div>
     </a>
   
   
-    <a href="/2022/10/25/jmeter%E7%BA%BF%E7%A8%8B%E7%BB%84%E7%9A%84%E9%85%8D%E7%BD%AE-%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">jmeter线程组的配置---详解</div>
+      <div class="article-nav-title">charles抓包工具的使用</div>
     </a>
   
 </nav>
