@@ -71,6 +71,234 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-bzm-Concurrency-Thread-Group阶梯加压详解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/01/10/bzm-Concurrency-Thread-Group%E9%98%B6%E6%A2%AF%E5%8A%A0%E5%8E%8B%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2023-01-10T02:52:56.000Z" itemprop="datePublished">2023-01-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/01/10/bzm-Concurrency-Thread-Group%E9%98%B6%E6%A2%AF%E5%8A%A0%E5%8E%8B%E8%AF%A6%E8%A7%A3/">bzm_Concurrency_Thread_Group阶梯加压详解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>【Target Concurrency】：目标并发线程数100</p>
+<p>【Ramp Up Time】：启动时间；若设置秒，则目标线程在5s内全部启动</p>
+<p>【Ramp-Up Steps Count】：阶梯次数；设置 10，则目标线程在 5s 内分10次阶梯加压（启动线程）；每次启动的线程数 &#x3D; 目标线程数 &#x2F; 阶梯次数 &#x3D; 100&#x2F; 5 &#x3D; 20</p>
+<p>【Hold Target Rate Time】：持续负载运行时间；若设置 2 ，则启动完所有线程后，持续负载运行 2 s，然后再结束</p>
+<p>【Time Unit】：时间单位：分钟或者秒</p>
+<p>【Thread Iterations Limit】：线程迭代次数限制（循环次数）；默认为空，理解成永远，如果运行时间到达Ramp Up Time + Hold Target Rate Time&#x3D;7秒，则停止运行线程</p>
+<p>【Log Threads Status into File】：将线程状态记录到文件中（将线程启动和线程停止事件保存为日志文件）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/01/10/bzm-Concurrency-Thread-Group%E9%98%B6%E6%A2%AF%E5%8A%A0%E5%8E%8B%E8%AF%A6%E8%A7%A3/" data-id="clcsg03p2000171tt3ftn9vnz" data-title="bzm_Concurrency_Thread_Group阶梯加压详解" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-使用Allure生成测试报告" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/01/06/%E4%BD%BF%E7%94%A8Allure%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" class="article-date">
+  <time class="dt-published" datetime="2023-01-06T02:34:39.000Z" itemprop="datePublished">2023-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/01/06/%E4%BD%BF%E7%94%A8Allure%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/">使用Allure生成测试报告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>前置条件:<br>当前环境下安装python3，pytest 、request、allure-pytest包<br>当前环境下安装allure2并配置环境变量<br>下载地址:wget <a target="_blank" rel="noopener" href="https://github.com/allure-framework/allure2/releases/download/2.20.1/allure-2.20.1.tgz">https://github.com/allure-framework/allure2/releases/download/2.20.1/allure-2.20.1.tgz</a></p>
+<p>配置allure环境变量<br>在&#x2F;etc&#x2F;profile最底下加入<br>PATH&#x3D;$PATH:&#x2F;usr&#x2F;local&#x2F;allure-2.20.1&#x2F;bin<br>检查是否配置成功<br>allure –version</p>
+<p>python3 -m pytest –alluredir&#x3D;.&#x2F;allure-results –clean-alluredir<br>执行成功后allure-results 已经生成 生成的结果是没法看的 需要转换成html</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@master allure-results]# ls</span><br><span class="line">0cb50a03-e095-4e58-9d78-67b2600b9ba0-attachment.txt</span><br><span class="line">11cbdd1e-bc52-476d-ac24-29679bc796a5-result.json</span><br><span class="line">59d86f88-9afc-411d-9999-153f320e5db4-attachment.txt</span><br><span class="line">5dff77c7-c8b0-4427-8eb3-d2549af74c79-result.json</span><br><span class="line">67ccfca4-0673-4fb9-89e2-4282b1a2aa25-container.json</span><br><span class="line">bbc64c2a-9849-4f82-ac56-f55e24d87c65-container.json</span><br><span class="line">c74d767c-514b-4abc-9314-dd65d7a9b320-container.json</span><br><span class="line">c8881516-98a3-4a71-86c1-75684dda49d4-container.json</span><br><span class="line">fe0d648c-6723-4960-aa08-9b45c5740291-attachment.txt</span><br></pre></td></tr></table></figure>
+
+<p>转换成html<br>allure generate .&#x2F;allure-results&#x2F; -o .&#x2F;reports&#x2F; –clean</p>
+<p>进入到reports所在目录 使用allure open 打开<br>allure open reoprts</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB0238b3ec3fce913559377bf25dedb71d?method=download&shareKey=2cb78646b33cfde5554a281cec335e70" alt="avatar"></p>
+<h4 id="jenkins-集成allure"><a href="#jenkins-集成allure" class="headerlink" title="jenkins 集成allure"></a>jenkins 集成allure</h4><ol>
+<li>jenkins安装allure插件</li>
+<li>在项目中配置<blockquote>
+<p>生成测试报告结果<br><img src="https://note.youdao.com/yws/api/personal/file/WEB285d81c7c00ec6100173a8db7f58eeb2?method=download&shareKey=d3a5cd5ee626c3a73084674055edc18e" alt="avatar"></p>
+</blockquote>
+</li>
+</ol>
+<blockquote>
+<p>增加构建后操作，根据allure结果 生成html<br><img src="https://note.youdao.com/yws/api/personal/file/WEBc6ba09fd5fafe09a1f080d6e8e004073?method=download&shareKey=d4a099000fcfeed7f6a37657fa6b5910" alt="avatar"></p>
+</blockquote>
+<blockquote>
+<p>全局工具配置中加入allue命令<br><img src="https://note.youdao.com/yws/api/personal/file/WEBfb09fdcce27c30c2ab02c1ee2554fc1d?method=download&shareKey=bc54597411144d146b6fe2880a87fe19" alt="avatar"></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/01/06/%E4%BD%BF%E7%94%A8Allure%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/" data-id="clcsg03p5000371tt6q4be3uz" data-title="使用Allure生成测试报告" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Allure常用特性allure-attach、allure-step、fixture、environment、categories" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/01/06/Allure%E5%B8%B8%E7%94%A8%E7%89%B9%E6%80%A7allure-attach%E3%80%81allure-step%E3%80%81fixture%E3%80%81environment%E3%80%81categories/" class="article-date">
+  <time class="dt-published" datetime="2023-01-06T02:34:04.000Z" itemprop="datePublished">2023-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/01/06/Allure%E5%B8%B8%E7%94%A8%E7%89%B9%E6%80%A7allure-attach%E3%80%81allure-step%E3%80%81fixture%E3%80%81environment%E3%80%81categories/">Allure常用特性allure.attach、allure.step、fixture、environment、categories</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>allure.attach</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/01/06/Allure%E5%B8%B8%E7%94%A8%E7%89%B9%E6%80%A7allure-attach%E3%80%81allure-step%E3%80%81fixture%E3%80%81environment%E3%80%81categories/" data-id="clcsg03ov000071tte0boazye" data-title="Allure常用特性allure.attach、allure.step、fixture、environment、categories" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-时间问题测试点" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/01/05/%E6%97%B6%E9%97%B4%E9%97%AE%E9%A2%98%E6%B5%8B%E8%AF%95%E7%82%B9/" class="article-date">
+  <time class="dt-published" datetime="2023-01-05T01:54:28.000Z" itemprop="datePublished">2023-01-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/01/05/%E6%97%B6%E9%97%B4%E9%97%AE%E9%A2%98%E6%B5%8B%E8%AF%95%E7%82%B9/">时间问题测试点</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p><img src="https://note.youdao.com/yws/api/personal/file/WEB6db51a7ff30509f52f2ccd938b9d366f?method=download&shareKey=fd67e9b45823486ff3cdc5b7ec59c98b" alt="avatar"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/01/05/%E6%97%B6%E9%97%B4%E9%97%AE%E9%A2%98%E6%B5%8B%E8%AF%95%E7%82%B9/" data-id="clcsg03p6000471ttajec8fxk" data-title="时间问题测试点" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-产品质量与测试效率平衡的一种较优解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/01/04/%E4%BA%A7%E5%93%81%E8%B4%A8%E9%87%8F%E4%B8%8E%E6%B5%8B%E8%AF%95%E6%95%88%E7%8E%87%E5%B9%B3%E8%A1%A1%E7%9A%84%E4%B8%80%E7%A7%8D%E8%BE%83%E4%BC%98%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2023-01-04T02:16:53.000Z" itemprop="datePublished">2023-01-04</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2023/01/04/%E4%BA%A7%E5%93%81%E8%B4%A8%E9%87%8F%E4%B8%8E%E6%B5%8B%E8%AF%95%E6%95%88%E7%8E%87%E5%B9%B3%E8%A1%A1%E7%9A%84%E4%B8%80%E7%A7%8D%E8%BE%83%E4%BC%98%E8%A7%A3/">产品质量与测试效率平衡的一种较优解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>项目背景（Project Environment）</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB37d0a03738cbfa0d2d5aa97bda4a21e9?method=download&shareKey=d614546e84f4954440ea4049aa5ca444" alt="avatar"></p>
+<p>产品元素（Product Element）<br>产品就是我们的测试对象，自然更要关注。项目一旦启动，测试就要尽早介入，了解产品需求，了解产品的架构设计、界面设计、可用性设计、安全性设计等，并参与相关评审，通过这些活动，能够更好的掌握被测系统。启发式测试策略模型中给出的Product Element 就是为了更好的做测试分析，</p>
+<p><img src="https://note.youdao.com/yws/api/personal/file/WEB1a3e5f999ead0c6af5876306c3e46d39?method=download&shareKey=125232a25749b31d94ed4ee2d5cf0092" alt="avatar"></p>
+<p>质量标准（Quality Criteria）<br>质量标准主要从 3 个方面考虑，即产品的目标用户、对质量的具体要求、参照哪些质量标准。从本质上来看，主要在回答好 3 个问题：</p>
+<h4 id="软件给谁用？"><a href="#软件给谁用？" class="headerlink" title="软件给谁用？"></a>软件给谁用？</h4><p>用户对质量有什么具体要求？<br>参照哪些质量标准或行业规范？</p>
+<h4 id="软件给谁用？-1"><a href="#软件给谁用？-1" class="headerlink" title="软件给谁用？"></a>软件给谁用？</h4><p>用户有哪些？用户的痛点是什么？用户场景是怎样的？用户画像是什么？用户与用户之间的优先级？用户最关心的地方是什么？用户实际使用的环境？···</p>
+<h4 id="用户对质量的要求？"><a href="#用户对质量的要求？" class="headerlink" title="用户对质量的要求？"></a>用户对质量的要求？</h4><p>在软件质量模型的 ISO&#x2F;IEC 25010 中定义了:使用质量模型和产品质量模型。软件产品质量模型包含 八 大质量特性：功能适应性、效率、兼容性、易用性、可靠性、安全性、可维护性、可移植性，每项质量特性还进一步分为多项子特性</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/01/04/%E4%BA%A7%E5%93%81%E8%B4%A8%E9%87%8F%E4%B8%8E%E6%B5%8B%E8%AF%95%E6%95%88%E7%8E%87%E5%B9%B3%E8%A1%A1%E7%9A%84%E4%B8%80%E7%A7%8D%E8%BE%83%E4%BC%98%E8%A7%A3/" data-id="clcsg03p4000271tt1he78a21" data-title="产品质量与测试效率平衡的一种较优解" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-mysql的锁" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/01/03/mysql%E7%9A%84%E9%94%81/" class="article-date">
@@ -153,7 +381,7 @@
 </ol>
 <p>设计出来的用例要保证程序中的每个语句至少被执行一次<br>∴ 这里给到用例就是 A&#x3D;True B&#x3D;True C&#x3D;True</p>
 <ol start="2">
-<li>分支覆盖<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(A&amp;&amp;B)&#123;</span><br><span class="line">    do actionA</span><br><span class="line">&#125;</span><br><span class="line">if(C||D)&#123;</span><br><span class="line">    do actionB</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li>分支覆盖<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if(A&amp;&amp;B)&#123;</span><br><span class="line">    do actionA</span><br><span class="line">&#125;</span><br><span class="line">if(C|D)&#123;</span><br><span class="line">    do actionB</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 至少覆盖一次决策点每个条件的所有可能结果(对与错)</li>
 </ol>
 <p>A&amp;&amp;B&#x3D;False<br>A&amp;&amp;B&#x3D;True<br>C||D&#x3D;True<br>C||D&#x3D;False</p>
@@ -343,208 +571,12 @@
 
 
   
-    <article id="post-使用jmeter阶梯式加压" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/26/%E4%BD%BF%E7%94%A8jmeter%E9%98%B6%E6%A2%AF%E5%BC%8F%E5%8A%A0%E5%8E%8B/" class="article-date">
-  <time class="dt-published" datetime="2022-10-26T07:42:16.000Z" itemprop="datePublished">2022-10-26</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">性能测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/26/%E4%BD%BF%E7%94%A8jmeter%E9%98%B6%E6%A2%AF%E5%BC%8F%E5%8A%A0%E5%8E%8B/">使用jmeter阶梯式加压</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li><p>安装Custom Thread Groups插件<br>plugins manager-&gt;available plugins-&gt;搜索Custom Thread Groups插件-&gt;勾选-&gt;点击Apply Changes and Restart Jmeter<br> <img src="https://note.youdao.com/yws/api/personal/file/WEB63c8646b934f71ebd46ac846f470403d?method=download&shareKey=e18c9ddd4eaed784056eddf449e30b5f" alt="avatar"></p>
-</li>
-<li><p>选择bzm - Concurrency Thread Group线程组<br>   <img src="https://note.youdao.com/yws/api/personal/file/WEB8b4fc344dfb0f9e378dbc08f594f3e73?method=download&shareKey=acc0add7f6cd22074bccbb57df6d52e8" alt="avatar"></p>
-</li>
-<li><p>bzm - Concurrency Thread Group配置参数<br><img src="https://note.youdao.com/yws/api/personal/file/WEB052f1621c1b910e3a45175588016322e?method=download&shareKey=e574cec8e3a59a518639963e15502640" alt="avatar"><br><br> Target Concurrency : 目标并发线程数<br> Ramp Up Time(min) : 在多少时间内启动到目标并发线程数<br> Ramp-Up Steps Count : 启动之后到达目标并发线程数的 阶梯数<br> Hold Target Rate Time(min) : 达到目标线程并发数之后，持续运行多长时间<br> Time Unit:minutes seconds : 分&#x2F;秒<br> Thread lterations Limit : 线程循环次数<br> Log Threads Status into File : 将线程状态记录到文件</p>
-</li>
-<li><p>下载监听插件<br> Plugins Manager主要插件介绍</p>
-<p> 1）PerfMon：监控服务器硬件，如CPU，内存，硬盘读写速度等 </p>
-<p> 2）3 Basic Graphs：主要显示平均响应时间，活动线程数，成功&#x2F;失败交易数等</p>
-<p> 3）5 Additional Graphs：主要显示吞吐量，连接时间，每秒的点击数等</p>
-</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/26/%E4%BD%BF%E7%94%A8jmeter%E9%98%B6%E6%A2%AF%E5%BC%8F%E5%8A%A0%E5%8E%8B/" data-id="cla7z7c9z000hlcttbiig200l" data-title="使用jmeter阶梯式加压" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jmeter/" rel="tag">jmeter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%A7%E8%83%BD/" rel="tag">性能</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-charles抓包工具的使用" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time class="dt-published" datetime="2022-10-25T06:05:30.000Z" itemprop="datePublished">2022-10-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7/">测试工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/">charles抓包工具的使用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/charles%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="cla7z7c9k0002lctt98qifu5o" data-title="charles抓包工具的使用" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/chrales/" rel="tag">chrales</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-jmeter线程组的配置-详解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/25/jmeter%E7%BA%BF%E7%A8%8B%E7%BB%84%E7%9A%84%E9%85%8D%E7%BD%AE-%E8%AF%A6%E8%A7%A3/" class="article-date">
-  <time class="dt-published" datetime="2022-10-25T03:00:59.000Z" itemprop="datePublished">2022-10-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95/">性能测试</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/25/jmeter%E7%BA%BF%E7%A8%8B%E7%BB%84%E7%9A%84%E9%85%8D%E7%BD%AE-%E8%AF%A6%E8%A7%A3/">jmeter线程组的配置---详解</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><img src="https://note.youdao.com/yws/api/personal/file/WEB85c140e0e43c6c8cf38e1f82531a5bbc?method=download&shareKey=6ac63f81dddfa9109a432a6466a3aceb" alt="avatar"></p>
-<p><strong>线程数</strong>:线程数，也可以称之为用户数,这个线程数是产生 TPS 的，而一个线程产生多少 TPS，取决于系统的响应时间有多快。</p>
-<p><strong>Ramp-up Period(in seconds):递增时间</strong>，以秒为单位。指的就是上面配置的线程数将在多长时间内会全部递增完。如果我们配置了 100 线程，这里配置为 10 秒，那么就是 100&#x2F;(10s*1000ms)&#x3D;1 线程 &#x2F;100ms；如果我们配置了 10 线程，这里配置为 1 秒，则是 10&#x2F;1000&#x3D;1 线程 &#x2F;100ms。这时我们要注意了哦，在 10 线程启动的这个阶段中，对服务器的压力是一样的</p>
-<p><strong>循环次数</strong>:这个值指的是一个线程中脚本迭代的次数。这里你需要注意，这个值和后面的 Scheduler(调度) 有一个判断关系</p>
-<p><strong>延迟创建线程直到需要</strong>:这个含义从字面看不是特别清楚。这里有一个默认的知识点，那就是 JMeter 所有的线程是一开始就创建完成的，只是递增的时候会按照上面的规则递增。如果选择了这个选项，则不会在一开始创建所有线程，只有在需要时才会创建。这一点和 LoadRunner 中的初始化选项类似。只是不知道你有没有注意过，基本上，我们做性能测试的工程师，很少有选择这个选项的。选与不选之间，区别到底是什么呢？如果不选择，在启动场景时，JMeter 会用更多的 CPU 来创建线程，它会影响前面的一些请求的响应时间，因为压力机的 CPU 在做其他事情嘛。<br>如果选择了的话，就会在使用时再创建，CPU 消耗会平均一些，但是这时会有另一个隐患，就是会稍微影响正在跑的线程。这个选项，选择与否，取决于压力机在执行过程中，它能产生多大的影响。如果你的线程数很多，一旦启动，压力机的 CPU 都被消耗在创建线程上了，那就可以考虑选择它，否则，可以不选择。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/jmeter%E7%BA%BF%E7%A8%8B%E7%BB%84%E7%9A%84%E9%85%8D%E7%BD%AE-%E8%AF%A6%E8%A7%A3/" data-id="cla7z7c9o0003lcttbdhz46l7" data-title="jmeter线程组的配置---详解" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jmeter/" rel="tag">jmeter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%A7%E8%83%BD/" rel="tag">性能</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/10/25/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2022-10-24T16:14:39.723Z" itemprop="datePublished">2022-10-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/10/25/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/10/25/hello-world/" data-id="cla7z7c9h0001lcttenj4c09d" data-title="Hello World" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+  </nav>
 
 </section>
         
@@ -596,23 +628,23 @@
       <ul>
         
           <li>
-            <a href="/2023/01/03/mysql%E7%9A%84%E9%94%81/">mysql的锁</a>
+            <a href="/2023/01/10/bzm-Concurrency-Thread-Group%E9%98%B6%E6%A2%AF%E5%8A%A0%E5%8E%8B%E8%AF%A6%E8%A7%A3/">bzm_Concurrency_Thread_Group阶梯加压详解</a>
           </li>
         
           <li>
-            <a href="/2023/01/02/%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95/">白盒测试--6种覆盖方法判定</a>
+            <a href="/2023/01/06/%E4%BD%BF%E7%94%A8Allure%E7%94%9F%E6%88%90%E6%B5%8B%E8%AF%95%E6%8A%A5%E5%91%8A/">使用Allure生成测试报告</a>
           </li>
         
           <li>
-            <a href="/2022/12/28/%E5%B9%B6%E5%8F%91%E7%94%A8%E6%88%B7%E6%95%B0%E5%A6%82%E4%BD%95%E7%AE%97/">并发用户数如何算</a>
+            <a href="/2023/01/06/Allure%E5%B8%B8%E7%94%A8%E7%89%B9%E6%80%A7allure-attach%E3%80%81allure-step%E3%80%81fixture%E3%80%81environment%E3%80%81categories/">Allure常用特性allure.attach、allure.step、fixture、environment、categories</a>
           </li>
         
           <li>
-            <a href="/2022/11/14/metersphere%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">metersphere使用总结</a>
+            <a href="/2023/01/05/%E6%97%B6%E9%97%B4%E9%97%AE%E9%A2%98%E6%B5%8B%E8%AF%95%E7%82%B9/">时间问题测试点</a>
           </li>
         
           <li>
-            <a href="/2022/11/08/jmeter%E8%AE%A1%E6%95%B0%E5%99%A8/">jmeter计数器</a>
+            <a href="/2023/01/04/%E4%BA%A7%E5%93%81%E8%B4%A8%E9%87%8F%E4%B8%8E%E6%B5%8B%E8%AF%95%E6%95%88%E7%8E%87%E5%B9%B3%E8%A1%A1%E7%9A%84%E4%B8%80%E7%A7%8D%E8%BE%83%E4%BC%98%E8%A7%A3/">产品质量与测试效率平衡的一种较优解</a>
           </li>
         
       </ul>
